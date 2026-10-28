@@ -1,0 +1,13 @@
+node_modules/
+.env
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+server/data/*.db
+server/data/*.json
+server/storage/evidence/*
+server/storage/evidence/**
+*.log
+.DS_Store
+client/dist/

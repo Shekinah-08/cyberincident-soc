@@ -1,0 +1,2 @@
+import express from 'express';import {store} from '../db.js';import {auth} from '../middleware.js';
+const router=express.Router();router.use(auth);router.get('/',(req,res)=>{const stats=store.stats(),users=store.users();const bySeverity=['LOW','MEDIUM','HIGH','CRITICAL'].map(severity=>({severity,count:store.incidents().filter(i=>i.severity===severity).length}));const recent=store.audit().slice(-8).reverse().map(a=>({...a,actor_name:users.find(u=>u.id===a.actor_id)?.name||'Système'}));res.json({stats,bySeverity,recent});});export default router;

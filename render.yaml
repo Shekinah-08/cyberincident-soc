@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: cyberincident-platform
+    runtime: node
+    buildCommand: npm ci --prefix client && npm --prefix client run build && npm ci --prefix server
+    startCommand: npm --prefix server start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 20
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MAX_UPLOAD_MB
+        value: 50
+      - key: RATE_LIMIT_MAX
+        value: 300
+      - key: BOOTSTRAP_ADMIN_EMAIL
+        sync: false
+      - key: BOOTSTRAP_ADMIN_PASSWORD
+        sync: false
+      - key: SNMP_DEMO_MODE
+        value: true
+      - key: SNMP_DEMO_SCENARIO
+        value: INTERFACE_DOWN
+      - key: SNMP_POLL_INTERVAL_MS
+        value: 60000
+      - key: SNMP_DEVICES
+        value: '[]'
