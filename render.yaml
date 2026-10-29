@@ -2,6 +2,7 @@ services:
   - type: web
     name: cyberincident-platform
     runtime: node
+    plan: free
     buildCommand: npm ci --prefix client && npm --prefix client run build && npm ci --prefix server
     startCommand: npm --prefix server start
     healthCheckPath: /api/health
